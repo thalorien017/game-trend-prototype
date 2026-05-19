@@ -190,7 +190,7 @@ body{
 .at{padding:3px 10px;border-radius:4px;font-size:10px;font-weight:600;background:var(--bg3);color:var(--text2);border:1px solid var(--border)}
 
 /* MODAL */
-.md{position:fixed;inset:0;z-index:2000;display:none;align-items:center;justify-content:center}
+.modal{position:fixed;inset:0;z-index:2000;display:none;align-items:center;justify-content:center}.modal.show{display:flex}.modal-bg{position:absolute;inset:0;background:rgba(0,0,0,.4)}.modal-card{position:relative;background:var(--bg2);border-radius:14px;width:400px;max-width:90vw;padding:20px;border:1px solid var(--border)}.md{position:fixed;inset:0;z-index:2000;display:none;align-items:center;justify-content:center}
 .md.show{display:flex}
 .mb{position:absolute;inset:0;background:rgba(0,0,0,.4)}
 .mc{position:relative;background:var(--bg2);border-radius:14px;width:400px;max-width:90vw;padding:20px;border:1px solid var(--border)}
@@ -208,22 +208,13 @@ body{
 .mb2{padding:5px 14px;border-radius:6px;font-size:10px;font-weight:600;cursor:pointer;border:none}
 .mb2.pr{background:var(--grd-orange);color:#fff}
 .mb2.pr:hover{opacity:.9}
-.mb2.sc{background:var(--card);color:var(--text2);border:1px solid var(--border)}
+.mod-btn{padding:6px 14px;border-radius:6px;font-size:10px;font-weight:600;cursor:pointer;border:1px solid var(--border);background:var(--card);color:var(--text2)}.mod-btn:hover{background:var(--bg3);color:var(--text)}.mb2.sc{background:var(--card);color:var(--text2);border:1px solid var(--border)}
 .mb2.sc:hover{background:var(--bg3);color:var(--text)}
 .tt{position:fixed;bottom:28px;left:50%;transform:translate(-50%,16px);background:var(--bg2);color:var(--text);padding:8px 20px;border-radius:8px;font-size:12px;font-weight:500;z-index:3000;border:1px solid var(--border);opacity:0;transition:all .2s;pointer-events:none}
 .tt.show{opacity:1;transform:translate(-50%,0)}
 
-/* TYPE POPOVER */
-.tpop{display:none;position:fixed;z-index:5000;background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:12px 16px;font-size:12px;line-height:1.6;color:var(--text2);box-shadow:0 8px 32px rgba(0,0,0,.3);width:280px}
-.tpop.show{display:block}
-.tpop strong{color:var(--text);display:inline-block;width:55px}
-.tpop .r{margin-bottom:5px;display:flex}
-.tpop .r:last-child{margin-bottom:0}
-.tpop .r .d{color:var(--text3);font-size:11px}
-/* TYPE TOOLTIP */
-.tti{display:inline-flex;align-items:center;gap:3px;position:relative}
-.tti .q{width:14px;height:14px;border-radius:50%;background:var(--bg3);border:1px solid var(--border);display:inline-flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;color:var(--text3);cursor:pointer;transition:all .12s;position:relative}
-.tti .q:hover{background:var(--card);color:var(--text2)}
+/* TYPE TAG */
+.tti{display:inline-flex;align-items:center}
 ::-webkit-scrollbar-track{background:transparent}
 ::-webkit-scrollbar-thumb{background:var(--bg3);border-radius:2px}
 </style>
@@ -237,6 +228,7 @@ body{
       <div class="tab" data-t="hot">🔥 热点</div>
     </div>
     <div class="header-right">
+      <button class="sub-btn" id="kbBtn">📖 口径说明</button>
       <span class="sub-text">🎯 <strong id="sc">14</strong>/14</span>
       <button class="sub-btn" id="sbb">管理</button>
       <span class="sub-text" id="ut">—</span>
@@ -275,13 +267,82 @@ body{
 <div class="ol" id="ol"></div>
 <div class="dr" id="dr">
   <div class="dh">
-    <div class="di"><div class="dt" id="dt">—</div><div class="dm" id="dm"><span id="dg">—</span><span id="dso">—</span><span class="tti"><span class=tpb id="dty">—</span><span class="q" onclick="showTypeTip(event)">?</span></span></div></div>
+    <div class="di"><div class="dt" id="dt">—</div><div class="dm" id="dm"><span id="dg">—</span><span id="dso">—</span><span class="tti"><span class=tpb id="dty">—</span></span></div></div>
     <div style="text-align:right;margin-right:8px"><div class="dsc" id="ds">—</div><div class="dsl" id="dsl">势能</div></div>
     <button class="dcl" id="dcl">✕</button>
   </div>
   <div class="dsec"><h4>数据概览</h4><div class="drow"><div class="di2"><div class="v" id="dd1">—</div><div class="l" id="dd1l">—</div></div><div class="di2"><div class="v" id="dd2">—</div><div class="l" id="dd2l">—</div></div><div class="di2"><div class="v" id="dd3">—</div><div class="l" id="dd3l">—</div></div></div></div>
   <div class="dsec"><h4>样本笔记</h4><div class="nl" id="dn"></div></div>
   <div class="dsec"><h4>AI 建议</h4><div class="ac"><div class="l">切入方向</div><div id="dai">—</div><div class="rw"><span class="at" id="ddf">—</span><span class="at" id="dac">—</span></div></div></div>
+</div>
+
+<!-- KB MODAL -->
+<div class="modal" id="kbModal">
+  <div class="modal-bg" id="kbBg"></div>
+  <div class="modal-card" style="width:520px;max-height:80vh;overflow-y:auto">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
+      <h3 style="font-size:15px;font-weight:700;color:var(--text)">📖 口径说明</h3>
+      <button class="mod-btn sec" id="kbClose">✕</button>
+    </div>
+
+    <div style="margin-bottom:16px">
+      <div style="font-size:11px;font-weight:700;color:var(--text3);letter-spacing:.5px;margin-bottom:8px;border-bottom:1px solid var(--border);padding-bottom:6px">四种子类型</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px">
+        <div style="background:var(--card);border:1px solid var(--border);border-radius:8px;padding:10px;font-size:12px;color:var(--text2)">
+          <div style="font-weight:700;color:var(--acc-cyan);margin-bottom:3px">🟢 蓝海选题</div>
+          <div style="font-size:10px;line-height:1.4">站外热 + 站内供给少<br>→ 实时趋势看板</div>
+        </div>
+        <div style="background:var(--card);border:1px solid var(--border);border-radius:8px;padding:10px;font-size:12px;color:var(--text2)">
+          <div style="font-weight:700;color:var(--acc-orange);margin-bottom:3px">🟠 站内苗头</div>
+          <div style="font-size:10px;line-height:1.4">站内社区热点阈值下调<br>对标蓝海选题热度级</div>
+        </div>
+        <div style="background:var(--card);border:1px solid var(--border);border-radius:8px;padding:10px;font-size:12px;color:var(--text2)">
+          <div style="font-weight:700;color:var(--acc-red);margin-bottom:3px">🔴 全网热点</div>
+          <div style="font-size:10px;line-height:1.4">站外≥3平台 + 站内验证<br>→ 热点看板</div>
+        </div>
+        <div style="background:var(--card);border:1px solid var(--border);border-radius:8px;padding:10px;font-size:12px;color:var(--text2)">
+          <div style="font-weight:700;color:#fb923c;margin-bottom:3px">🟠 社区热点</div>
+          <div style="font-size:10px;line-height:1.4">站内讨论火 + 站外一般<br>→ 热点看板</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-bottom:16px">
+      <div style="font-size:11px;font-weight:700;color:var(--text3);letter-spacing:.5px;margin-bottom:8px;border-bottom:1px solid var(--border);padding-bottom:6px">内容类型</div>
+      <div style="display:flex;flex-direction:column;gap:6px">
+        <div style="display:flex;gap:8px;align-items:flex-start;font-size:12px;padding:8px 10px;background:var(--card);border-radius:8px">
+          <span style="font-weight:700;color:var(--acc-purple);white-space:nowrap;min-width:50px">🎨 创作型</span>
+          <span style="color:var(--text2)">用户原创产出内容：cosplay、二创视频、攻略教程、仿妆</span>
+        </div>
+        <div style="display:flex;gap:8px;align-items:flex-start;font-size:12px;padding:8px 10px;background:var(--card);border-radius:8px">
+          <span style="font-weight:700;color:var(--acc-cyan);white-space:nowrap;min-width:50px">💬 讨论型</span>
+          <span style="color:var(--text2)">用户发起观点讨论：角色强度评价、版本分析、吐槽</span>
+        </div>
+        <div style="display:flex;gap:8px;align-items:flex-start;font-size:12px;padding:8px 10px;background:var(--card);border-radius:8px">
+          <span style="font-weight:700;color:var(--acc-green);white-space:nowrap;min-width:50px">🔄 双重</span>
+          <span style="color:var(--text2)">兼具创作与讨论属性，如教程帖引发大量讨论</span>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div style="font-size:11px;font-weight:700;color:var(--text3);letter-spacing:.5px;margin-bottom:8px;border-bottom:1px solid var(--border);padding-bottom:6px">评分公式</div>
+      <div style="display:flex;flex-direction:column;gap:6px">
+        <div style="padding:8px 10px;background:var(--card);border-radius:8px">
+          <div style="font-size:12px;font-weight:700;color:var(--acc-orange);margin-bottom:3px">🚀 实时趋势 · 势能分</div>
+          <div style="font-size:11px;color:var(--text2);line-height:1.4">
+            增速(40%) + 笔记增量(20%) + 站外信号强度(30%) + 内容多样性(10%)
+          </div>
+        </div>
+        <div style="padding:8px 10px;background:var(--card);border-radius:8px">
+          <div style="font-size:12px;font-weight:700;color:var(--acc-red);margin-bottom:3px">🔥 热点 · 热度分</div>
+          <div style="font-size:11px;color:var(--text2);line-height:1.4">
+            发布量(30%) + CES总量(40%) + 站外热度(20%) + 生命周期阶段(10%)
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
 <div class="md" id="md">
@@ -294,11 +355,7 @@ body{
   </div>
 </div>
 <div class="tt" id="tt"></div>
-<div class="tpop" id="tpop">
-  <div class="r"><strong>创作型</strong><span class="d">用户原创产出（cos/二创/教程/仿妆）</span></div>
-  <div class="r"><strong>讨论型</strong><span class="d">发起观点讨论（评价/分析/吐槽）</span></div>
-  <div class="r"><strong>双重</strong><span class="d">兼具创作与讨论属性</span></div>
-</div>
+
 
 <script>
 const G='王者荣耀,和平精英,三角洲行动,金铲铲之战,英雄联盟,无畏契约,火影忍者,PUBG,暗区突围,永劫无间,CSGO,穿越火线：枪战王者,DOTA2,王者万象棋'.split(',')
@@ -338,8 +395,8 @@ function rd(){
   document.getElementById('st4').textContent=hi.length
   document.getElementById('sc').textContent=sb.length
   const g=document.getElementById('tg'),h=document.getElementById('hg')
-  g.innerHTML=ti.length?ti.map(t=>'<div class=tc data-i='+t.id+'><div class=top><div class=tl>'+t.tl+'</div><div><div class=sc>'+t.mo+'</div><div class=slb>势能</div></div></div><div class=bd>'+'<span class="tg '+(t.so=='站外热'?'ext':t.so=='站内苗头'?'int':'dual')+'">'+t.so+'</span><span class=gb>'+t.gm+'</span><span class=gr>↑'+t.gr+'%</span><span class=tti><span class=tpb>'+t.ty+'</span><span class=q onclick="showTypeTip(event)">?</span></span><span class=tmb>⏱'+t.ha+'h前</span></div><div class=bt><button class=prb>查看详情</button></div></div>').join(''):'<div class=emp><div class=ic>📡</div>暂无趋势 · 6h后刷新</div>'
-  h.innerHTML=hi.length?hi.map(t=>'<div class=hc data-i='+t.id+'><div class=hbr><div class=hfl style=width:'+t.hs+'%></div></div><div class=top><div class=tl>'+t.tl+'</div><div><div class=sc>'+t.hs+'</div><div class=slb>热度</div></div></div><div class=bd>'+'<span class="tg '+(t.so=='全网热点'?'glbl':'comm')+'">'+t.so+'</span><span class=gb>'+t.gm+'</span><span class=tti><span class=tpb>'+t.ty+'</span><span class=q onclick="showTypeTip(event)">?</span></span><span class=hs>发布 <strong>'+(t.nt/1000).toFixed(1)+'k</strong></span><span class=hs>CES <strong>'+t.ce+'w</strong></span><span class="lf '+(t.lc=='上升期'?'up':t.lc=='高峰期'?'peak':'dec')+'">'+(t.lc=='上升期'?'📈':t.lc=='高峰期'?'🔝':'📉')+t.lc+'</span><span class=tmb>⏱'+t.ha+'h前</span></div><div class=bt><button class=prb>详情</button></div></div>').join(''):'<div class=emp><div class=ic>🔥</div>暂无热点 · 6h后刷新</div>'
+  g.innerHTML=ti.length?ti.map(t=>'<div class=tc data-i='+t.id+'><div class=top><div class=tl>'+t.tl+'</div><div><div class=sc>'+t.mo+'</div><div class=slb>势能</div></div></div><div class=bd>'+'<span class="tg '+(t.so=='站外热'?'ext':t.so=='站内苗头'?'int':'dual')+'">'+t.so+'</span><span class=gb>'+t.gm+'</span><span class=gr>↑'+t.gr+'%</span><span class=tti><span class=tpb>'+t.ty+'</span></span><span class=tmb>⏱'+t.ha+'h前</span></div><div class=bt><button class=prb>查看详情</button></div></div>').join(''):'<div class=emp><div class=ic>📡</div>暂无趋势 · 6h后刷新</div>'
+  h.innerHTML=hi.length?hi.map(t=>'<div class=hc data-i='+t.id+'><div class=hbr><div class=hfl style=width:'+t.hs+'%></div></div><div class=top><div class=tl>'+t.tl+'</div><div><div class=sc>'+t.hs+'</div><div class=slb>热度</div></div></div><div class=bd>'+'<span class="tg '+(t.so=='全网热点'?'glbl':'comm')+'">'+t.so+'</span><span class=gb>'+t.gm+'</span><span class=tti><span class=tpb>'+t.ty+'</span></span><span class=hs>发布 <strong>'+(t.nt/1000).toFixed(1)+'k</strong></span><span class=hs>CES <strong>'+t.ce+'w</strong></span><span class="lf '+(t.lc=='上升期'?'up':t.lc=='高峰期'?'peak':'dec')+'">'+(t.lc=='上升期'?'📈':t.lc=='高峰期'?'🔝':'📉')+t.lc+'</span><span class=tmb>⏱'+t.ha+'h前</span></div><div class=bt><button class=prb>详情</button></div></div>').join(''):'<div class=emp><div class=ic>🔥</div>暂无热点 · 6h后刷新</div>'
   document.querySelectorAll('.prb').forEach(b=>b.addEventListener('click',e=>{e.stopPropagation()
     const c=e.target.closest('[data-i]');if(!c)return
     const id=c.dataset.i,pool=c.closest('.tc')?TR:HO
@@ -382,15 +439,10 @@ function os(){const q=document.getElementById('msr').value.toLowerCase()
 }
 function uc(){document.getElementById('mcn').textContent=document.querySelectorAll('#gl input:checked').length}
 function tt(m){const t=document.getElementById('tt');t.textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2000)}
-function showTypeTip(e){
-  e.stopPropagation()
-  const pop=document.getElementById('tpop')
-  const x=Math.min(e.clientX,window.innerWidth-290)
-  const y=Math.min(e.clientY+20,window.innerHeight-130)
-  pop.style.left=x+'px';pop.style.top=y+'px'
-  pop.classList.toggle('show')
-}
-document.addEventListener('click',function(){const p=document.getElementById('tpop');if(p.classList.contains('show'))p.classList.remove('show')})
+
+document.getElementById('kbBtn').addEventListener('click',()=>document.getElementById('kbModal').classList.add('show'))
+document.getElementById('kbBg').addEventListener('click',()=>document.getElementById('kbModal').classList.remove('show'))
+document.getElementById('kbClose').addEventListener('click',()=>document.getElementById('kbModal').classList.remove('show'))
 const n=new Date();document.getElementById('ut').textContent=String(n.getHours()).padStart(2,'0')+':'+String(n.getMinutes()).padStart(2,'0')
 </script>
 </body>
