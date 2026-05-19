@@ -3,31 +3,30 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>竞技游戏趋势 · 专业电竞感</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<title>竞技游戏趋势 · 视觉 v2</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Space+Grotesk:wght@600;700;800&display=swap');
 
 :root {
-  --bg: #0b0d14;
-  --bg2: #11131f;
-  --bg3: #181b2e;
-  --card: #141726;
-  --border: rgba(255,255,255,.06);
-  --border-hover: rgba(255,107,53,.25);
-  --text: #e4e6f0;
-  --text2: #8a8ea8;
-  --text3: #545877;
-  --accent: #ff6b35;
-  --accent2: #ff2d55;
-  --cyan: #00d4d4;
-  --green: #34d399;
-  --purple: #a855f7;
-  --pink: #ff375f;
-  --gradient-orange: linear-gradient(135deg,#ff6b35,#ff2d55);
-  --gradient-cyan: linear-gradient(135deg,#00d4d4,#a855f7);
+  --bg: #13161e;
+  --bg2: #191d2a;
+  --bg3: #1f2435;
+  --card: #1a1e2d;
+  --border: rgba(255,255,255,.05);
+  --border-hv: rgba(255,107,53,.15);
+  --text: #d1d5e0;
+  --text2: #9ca0b8;
+  --text3: #656a85;
+  --acc-orange: #f97316;
+  --acc-red: #ef4444;
+  --acc-cyan: #14b8a6;
+  --acc-green: #22c55e;
+  --acc-purple: #a78bfa;
+  --accent: #f97316;
   --red: #ef4444;
+  --grd-orange: linear-gradient(135deg,#f97316,#ef4444);
+  --grd-cyan: linear-gradient(135deg,#14b8a6,#a78bfa);
+  --grd-red: linear-gradient(135deg,#ef4444,#f97316);
 }
 
 *{margin:0;padding:0;box-sizing:border-box}
@@ -35,623 +34,338 @@ body{
   font-family:'Plus Jakarta Sans','PingFang SC','Segoe UI',sans-serif;
   background:var(--bg);color:var(--text);
   min-height:100vh;
-  overflow-x:hidden;
 }
 
-/* Glow bg effect */
-body::before{
-  content:'';position:fixed;top:-200px;left:-200px;
-  width:600px;height:600px;
-  background:radial-gradient(circle,rgba(255,107,53,.04) 0%,transparent 70%);
-  pointer-events:none;z-index:0;
-}
-body::after{
-  content:'';position:fixed;bottom:-200px;right:-200px;
-  width:500px;height:500px;
-  background:radial-gradient(circle,rgba(0,212,212,.03) 0%,transparent 70%);
-  pointer-events:none;z-index:0;
-}
+.app{max-width:1120px;margin:0 auto;padding:20px 24px 48px}
 
-.app{max-width:1120px;margin:0 auto;padding:24px 24px 48px;position:relative;z-index:1}
-
-/* ===== HEADER ===== */
-.header{display:flex;align-items:center;gap:20px;margin-bottom:28px;animation:fadeIn .4s ease}
+/* HEADER */
+.header{display:flex;align-items:center;gap:16px;margin-bottom:24px}
 .header h1{
-  font-family:'Space Grotesk',sans-serif;
-  font-size:18px;font-weight:800;
-  background:var(--gradient-orange);-webkit-background-clip:text;-webkit-text-fill-color:transparent;
-  letter-spacing:-.3px;white-space:nowrap;
+  font-family:'Space Grotesk',sans-serif;font-size:16px;font-weight:800;
+  background:var(--grd-orange);-webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  letter-spacing:-.2px;
 }
-.tabs{display:flex;background:var(--bg2);border-radius:10px;padding:3px;border:1px solid var(--border)}
+.tabs{display:flex;background:var(--bg2);border-radius:8px;padding:2px;border:1px solid var(--border)}
 .tab{
-  padding:8px 22px;border-radius:8px;font-size:13px;font-weight:600;
-  cursor:pointer;color:var(--text3);transition:all .2s;user-select:none;letter-spacing:.2px;
+  padding:6px 18px;border-radius:6px;font-size:12px;font-weight:600;
+  cursor:pointer;color:var(--text3);transition:all .15s;user-select:none;letter-spacing:.2px;
 }
-.tab.active{background:var(--gradient-orange);color:#fff;font-weight:700}
-.tab:hover:not(.active){color:var(--text2);background:var(--bg3)}
-
-.header-right{margin-left:auto;display:flex;align-items:center;gap:14px}
-.sub-text{font-size:12px;color:var(--text3)}
-.sub-text strong{color:var(--text);font-weight:600}
+.tab.active{background:var(--grd-orange);color:#fff}
+.tab:hover:not(.active){color:var(--text2)}
+.header-right{margin-left:auto;display:flex;align-items:center;gap:10px}
+.sub-text{font-size:11px;color:var(--text3)}
+.sub-text strong{color:var(--text2);font-weight:600}
 .sub-btn{
-  padding:5px 14px;border-radius:8px;font-size:12px;font-weight:500;
+  padding:4px 12px;border-radius:6px;font-size:11px;font-weight:600;
   background:var(--bg2);color:var(--text2);border:1px solid var(--border);
-  cursor:pointer;transition:all .15s;
-}
-.sub-btn:hover{background:var(--bg3);color:var(--text);border-color:rgba(255,107,53,.2)}
-
-/* ===== STATS ROW ===== */
-.stats{display:flex;gap:10px;margin-bottom:22px;animation:fadeIn .5s ease .1s both}
-.stat{
-  flex:1;background:var(--card);border-radius:12px;
-  padding:14px 18px;border:1px solid var(--border);
-  position:relative;overflow:hidden;
-}
-.stat::after{
-  content:'';position:absolute;top:0;left:0;right:0;height:2px;
-  background:var(--gradient-orange);opacity:.6;
-}
-.stat.bl::after{background:var(--gradient-cyan)}
-.stat.ro::after{background:linear-gradient(135deg,#ff375f,#a855f7)}
-.stat .n{font-size:20px;font-weight:800;font-family:'Space Grotesk',sans-serif}
-.stat .n.orange{color:var(--accent)}
-.stat .n.cyan{color:var(--cyan)}
-.stat .n.pink{color:var(--pink)}
-.stat .l{font-size:11px;color:var(--text3);margin-top:2px;letter-spacing:.3px}
-
-/* ===== FILTERS ===== */
-.filters{display:flex;gap:6px;margin-bottom:20px;flex-wrap:wrap;align-items:center;animation:fadeIn .5s ease .15s both}
-.f-btn{
-  padding:5px 14px;border-radius:8px;font-size:11px;font-weight:600;
-  background:var(--card);color:var(--text3);border:1px solid var(--border);
-  cursor:pointer;transition:all .15s;user-select:none;letter-spacing:.2px;
-}
-.f-btn.active{background:rgba(255,107,53,.12);color:var(--accent);border-color:rgba(255,107,53,.25)}
-.f-btn:hover:not(.active){background:var(--bg3);color:var(--text2)}
-.f-divider{width:1px;height:20px;background:var(--border);margin:0 2px}
-
-/* ===== SECTION ===== */
-.section{display:flex;align-items:center;gap:12px;margin-bottom:14px;animation:fadeIn .5s ease .2s both}
-.section .badge{
-  padding:3px 12px;border-radius:6px;font-size:10px;font-weight:700;
-  letter-spacing:1px;
-}
-.section .badge.trend{background:rgba(255,107,53,.12);color:var(--accent)}
-.section .badge.hot{background:rgba(239,68,68,.12);color:var(--red)}
-.section h3{font-size:14px;font-weight:700;letter-spacing:.3px}
-.section .count{margin-left:auto;font-size:11px;color:var(--text3);font-weight:500;letter-spacing:.3px}
-.section .count span{color:var(--text2);font-weight:700}
-
-/* ===== GRID ===== */
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:32px}
-
-/* ===== TREND CARD ===== */
-.t-card{
-  background:linear-gradient(135deg,var(--card) 0%,#121526 100%);
-  border-radius:14px;padding:18px 20px 16px;
-  cursor:pointer;
-  border:1px solid var(--border);
-  transition:all .2s cubic-bezier(.22,.61,.36,1);
-  position:relative;overflow:hidden;
-  animation:cardIn .4s ease both;
-}
-.t-card:nth-child(1){animation-delay:.05s}
-.t-card:nth-child(2){animation-delay:.1s}
-.t-card:hover{
-  border-color:var(--border-hover);
-  transform:translateY(-2px);
-  box-shadow:0 8px 32px rgba(255,107,53,.06);
-}
-.t-card::before{
-  content:'';position:absolute;left:0;top:0;bottom:0;width:3px;
-  background:linear-gradient(180deg,var(--accent),var(--purple));
-  border-radius:0 2px 2px 0;
-}
-.t-card .top{display:flex;justify-content:space-between;align-items:flex-start}
-.t-card .title{font-size:14px;font-weight:700;line-height:1.4;max-width:65%;letter-spacing:-.2px}
-.t-card .score{font-size:24px;font-weight:800;font-family:'Space Grotesk',sans-serif;color:var(--accent);margin-top:-2px}
-.t-card .sl{font-size:10px;color:var(--text3);text-align:right;letter-spacing:.5px}
-.t-card .body{margin-top:10px;display:flex;flex-wrap:wrap;gap:6px;align-items:center}
-.tag{
-  padding:2px 10px;border-radius:6px;font-size:10px;font-weight:600;
-  letter-spacing:.2px;
-}
-.tag.ext{background:rgba(0,212,212,.1);color:var(--cyan);border:1px solid rgba(0,212,212,.15)}
-.tag.int{background:rgba(255,107,53,.1);color:var(--accent);border:1px solid rgba(255,107,53,.15)}
-.tag.dual{background:rgba(255,45,85,.1);color:var(--accent2);border:1px solid rgba(255,45,85,.15)}
-.game-badge{
-  background:rgba(255,255,255,.04);padding:2px 10px;border-radius:6px;
-  font-size:11px;font-weight:600;color:var(--text2);letter-spacing:.2px;
-}
-.grow{font-size:12px;font-weight:700;color:var(--green)}
-.type-badge{
-  background:rgba(168,85,247,.08);color:var(--purple);
-  padding:2px 10px;border-radius:6px;font-size:10px;font-weight:600;
-}
-.time-badge{
-  font-size:10px;color:var(--text3);margin-left:auto;letter-spacing:.2px;
-}
-.t-card .bot{margin-top:12px;display:flex;gap:6px;align-items:center}
-.b-btn{
-  padding:5px 16px;border-radius:8px;font-size:11px;font-weight:600;
-  cursor:pointer;border:none;transition:all .15s;
-  letter-spacing:.2px;
-}
-.b-btn.pri{
-  background:linear-gradient(135deg,rgba(255,107,53,.15),rgba(255,45,85,.08));
-  color:var(--accent);border:1px solid rgba(255,107,53,.2);
-}
-.b-btn.pri:hover{background:linear-gradient(135deg,rgba(255,107,53,.25),rgba(255,45,85,.15))}
-
-/* ===== HOT CARD ===== */
-.h-card{
-  background:linear-gradient(135deg,var(--card) 0%,#121526 100%);
-  border-radius:14px;padding:16px 20px 16px;
-  cursor:pointer;
-  border:1px solid var(--border);
-  transition:all .2s cubic-bezier(.22,.61,.36,1);
-  position:relative;overflow:hidden;
-  animation:cardIn .4s ease both;
-}
-.h-card:hover{
-  border-color:rgba(239,68,68,.2);
-  transform:translateY(-2px);
-  box-shadow:0 8px 32px rgba(239,68,68,.05);
-}
-.h-bar{height:3px;background:rgba(255,255,255,.04);border-radius:2px;margin-bottom:12px;overflow:hidden}
-.h-fill{height:100%;border-radius:2px;background:linear-gradient(90deg,var(--red),#f97316);transition:width .3s}
-.h-card .top{display:flex;justify-content:space-between;align-items:flex-start}
-.h-card .title{font-size:14px;font-weight:700;line-height:1.4;max-width:60%;letter-spacing:-.2px}
-.h-card .score{font-size:24px;font-weight:800;font-family:'Space Grotesk',sans-serif;color:var(--red);margin-top:-2px}
-.h-card .sl{font-size:10px;color:var(--text3);text-align:right;letter-spacing:.5px}
-.h-card .body{margin-top:8px;display:flex;flex-wrap:wrap;gap:6px;align-items:center}
-.tag.comm{background:rgba(249,115,22,.1);color:#fb923c;border:1px solid rgba(249,115,22,.15)}
-.tag.glbl{background:rgba(239,68,68,.1);color:var(--red);border:1px solid rgba(239,68,68,.15)}
-
-.h-body{display:flex;flex-wrap:wrap;gap:10px;margin-top:6px;align-items:center}
-.h-stat{font-size:11px;color:var(--text3);letter-spacing:.2px}
-.h-stat strong{color:var(--text2);font-weight:700}
-.life{
-  font-size:10px;font-weight:600;padding:1px 10px;border-radius:6px;
-  letter-spacing:.2px;
-}
-.life.up{background:rgba(52,211,153,.1);color:var(--green);border:1px solid rgba(52,211,153,.15)}
-.life.peak{background:rgba(239,68,68,.1);color:var(--red);border:1px solid rgba(239,68,68,.15)}
-.life.decline{background:rgba(255,255,255,.04);color:var(--text3);border:1px solid var(--border)}
-.time-badge.hot{margin-left:auto;font-size:10px;color:var(--text3)}
-
-/* ===== EMPTY STATE ===== */
-.empty{grid-column:1/-1;padding:48px;text-align:center;color:var(--text3);font-size:13px}
-.empty .icon{font-size:32px;margin-bottom:10px;opacity:.5}
-
-/* ===== DETAIL DRAWER ===== */
-.drawer{
-  position:fixed;top:0;right:0;bottom:0;width:460px;max-width:90vw;
-  background:var(--bg2);z-index:1000;
-  transform:translateX(100%);transition:transform .3s cubic-bezier(.22,.61,.36,1);
-  overflow-y:auto;border-left:1px solid var(--border);
-}
-.drawer.open{transform:translateX(0)}
-.overlay{
-  position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.45);
-  z-index:999;opacity:0;pointer-events:none;transition:opacity .2s;
-}
-.overlay.show{opacity:1;pointer-events:auto}
-.d-header{
-  display:flex;justify-content:space-between;align-items:flex-start;
-  padding:24px 24px 18px;border-bottom:1px solid var(--border);
-}
-.d-info{flex:1;min-width:0}
-.d-title{font-size:16px;font-weight:700;line-height:1.4;padding-right:12px}
-.d-meta{font-size:11px;color:var(--text3);margin-top:4px;display:flex;gap:8px;flex-wrap:wrap}
-.d-score{font-size:28px;font-weight:800;font-family:'Space Grotesk',sans-serif;white-space:nowrap}
-.d-score.orange{color:var(--accent)}
-.d-score.pink{color:var(--red)}
-.d-sl{font-size:10px;color:var(--text3);text-align:right;letter-spacing:.5px}
-.d-close{
-  width:30px;height:30px;border-radius:8px;
-  background:var(--bg3);border:1px solid var(--border);
-  font-size:16px;cursor:pointer;display:flex;align-items:center;
-  justify-content:center;color:var(--text3);transition:all .12s;flex-shrink:0;
-}
-.d-close:hover{background:var(--card);color:var(--text)}
-
-.d-section{padding:18px 24px;border-bottom:1px solid var(--border)}
-.d-section:last-child{border-bottom:none}
-.d-section h4{font-size:11px;font-weight:700;color:var(--text3);margin-bottom:12px;letter-spacing:1px}
-.data-row{display:flex;gap:16px}
-.data-item{flex:1}
-.data-item .v{font-size:15px;font-weight:700;font-family:'Space Grotesk',sans-serif;color:var(--text)}
-.data-item .lbl{font-size:10px;color:var(--text3);margin-top:2px;letter-spacing:.3px}
-
-.note-list{display:flex;flex-direction:column;gap:6px}
-.note-item{
-  display:flex;align-items:center;gap:10px;padding:10px 12px;
-  background:var(--card);border-radius:10px;border:1px solid var(--border);
   cursor:pointer;transition:all .12s;
 }
-.note-item:hover{background:var(--bg3);border-color:rgba(255,107,53,.15)}
-.note-item .n-icon{width:28px;height:28px;border-radius:6px;background:var(--bg3);display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0}
-.note-item .n-info{flex:1;min-width:0}
-.note-item .n-info .t{font-size:12px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:var(--text)}
-.note-item .n-info .sub{font-size:10px;color:var(--text3);margin-top:1px}
-.note-item .link{font-size:10px;color:var(--cyan);font-weight:600}
+.sub-btn:hover{background:var(--bg3);color:var(--text)}
 
-.ai-card{
-  background:var(--card);border-radius:10px;padding:14px;
-  border:1px solid var(--border);font-size:13px;line-height:1.6;color:var(--text2);
+/* STATS */
+.stats{display:flex;gap:8px;margin-bottom:20px}
+.stat{
+  flex:1;background:var(--card);border-radius:10px;padding:12px 16px;
+  border:1px solid var(--border);
 }
-.ai-card .lbl{font-size:10px;font-weight:700;color:var(--text3);margin-bottom:6px;letter-spacing:.5px}
-.ai-card .row{display:flex;gap:10px;margin-top:8px}
-.ai-tag{padding:2px 10px;border-radius:6px;font-size:10px;font-weight:600;background:var(--bg3);color:var(--text2);border:1px solid var(--border)}
+.stat .n{font-size:18px;font-weight:800;font-family:'Space Grotesk',sans-serif;color:var(--text)}
+.stat .n.o{color:var(--acc-orange)}
+.stat .n.c{color:var(--acc-cyan)}
+.stat .n.r{color:var(--acc-red)}
+.stat .l{font-size:10px;color:var(--text3);margin-top:1px;letter-spacing:.3px}
 
-/* ===== GAME SUBSCRIPTION MODAL ===== */
-.modal{position:fixed;top:0;left:0;right:0;bottom:0;z-index:2000;display:none;align-items:center;justify-content:center}
-.modal.show{display:flex}
-.modal-bg{position:absolute;inset:0;background:rgba(0,0,0,.5)}
-.modal-card{
-  position:relative;background:var(--bg2);border-radius:16px;
-  width:420px;max-width:90vw;padding:24px;
-  border:1px solid var(--border);box-shadow:0 16px 48px rgba(0,0,0,.3);
+/* FILTERS */
+.filters{display:flex;gap:4px;margin-bottom:18px;flex-wrap:wrap}
+.f-btn{
+  padding:4px 12px;border-radius:6px;font-size:11px;font-weight:600;
+  background:var(--card);color:var(--text3);border:1px solid var(--border);
+  cursor:pointer;transition:all .12s;user-select:none;
 }
-.modal-card h3{font-size:15px;font-weight:700;margin-bottom:16px}
-.modal-search{
-  width:100%;padding:8px 14px;border-radius:10px;
-  background:var(--card);border:1px solid var(--border);
-  font-size:12px;color:var(--text);outline:none;margin-bottom:12px;
-}
-.modal-search:focus{border-color:rgba(255,107,53,.3)}
-.game-list{display:grid;grid-template-columns:1fr 1fr;gap:4px;max-height:240px;overflow-y:auto}
-.game-item{
-  display:flex;align-items:center;gap:8px;padding:6px 10px;
-  border-radius:8px;cursor:pointer;transition:all .12s;font-size:12px;color:var(--text2);
-}
-.game-item:hover{background:var(--bg3);color:var(--text)}
-.game-item input[type=checkbox]{accent-color:var(--accent);width:14px;height:14px;cursor:pointer}
-.modal-footer{
-  display:flex;justify-content:space-between;align-items:center;
-  margin-top:14px;padding-top:14px;border-top:1px solid var(--border);
-}
-.modal-footer .count{font-size:11px;color:var(--text3)}
-.modal-footer .count strong{color:var(--text);font-weight:700}
-.mod-actions{display:flex;gap:6px}
-.mod-btn{
-  padding:6px 16px;border-radius:8px;font-size:11px;font-weight:600;
-  cursor:pointer;border:none;transition:all .12s;letter-spacing:.2px;
-}
-.mod-btn.pri{background:var(--gradient-orange);color:#fff}
-.mod-btn.pri:hover{opacity:.9}
-.mod-btn.sec{background:var(--card);color:var(--text2);border:1px solid var(--border)}
-.mod-btn.sec:hover{background:var(--bg3);color:var(--text)}
+.f-btn.active{background:rgba(249,115,22,.1);color:var(--acc-orange);border-color:rgba(249,115,22,.2)}
+.f-btn:hover:not(.active){background:var(--bg3);color:var(--text2)}
+.fd{width:1px;height:18px;background:var(--border);margin:0 3px}
 
-/* ===== TOAST ===== */
-.toast{
-  position:fixed;bottom:32px;left:50%;transform:translateX(-50%) translateY(20px);
-  background:var(--bg2);color:var(--text);padding:10px 24px;border-radius:10px;
-  font-size:13px;font-weight:500;z-index:3000;
-  border:1px solid var(--border);box-shadow:0 4px 24px rgba(0,0,0,.2);
-  opacity:0;transition:all .25s;pointer-events:none;
+/* SECTION */
+.section{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.section .badge{padding:2px 10px;border-radius:4px;font-size:10px;font-weight:700;letter-spacing:.5px}
+.section .badge.t{background:rgba(249,115,22,.1);color:var(--acc-orange)}
+.section .badge.h{background:rgba(239,68,68,.1);color:var(--acc-red)}
+.section h3{font-size:13px;font-weight:700}
+.section .cnt{font-size:11px;color:var(--text3);margin-left:auto}
+.section .cnt span{color:var(--text2);font-weight:700}
+
+/* GRID */
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:28px}
+
+/* TREND CARD */
+.tc{
+  background:var(--card);border-radius:12px;padding:14px 16px 12px;
+  cursor:pointer;border:1px solid var(--border);
+  transition:all .15s;position:relative;overflow:hidden;
 }
-.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.tc:hover{border-color:var(--border-hv);transform:translateY(-1px)}
+.tc::before{content:'';position:absolute;left:0;top:8px;bottom:8px;width:2.5px;
+  background:linear-gradient(180deg,var(--acc-orange),var(--acc-purple));border-radius:2px}
+.tc .top{display:flex;justify-content:space-between}
+.tc .tl{font-size:13px;font-weight:700;line-height:1.35;max-width:68%;letter-spacing:-.1px;color:var(--text)}
+.tc .sc{font-size:22px;font-weight:800;font-family:'Space Grotesk',sans-serif;color:var(--acc-orange);line-height:1}
+.tc .slb{font-size:9px;color:var(--text3);text-align:right;letter-spacing:.5px}
+.tc .bd{margin-top:8px;display:flex;flex-wrap:wrap;gap:4px;align-items:center}
+.tc .bt{margin-top:8px;display:flex;gap:4px}
+.tg{padding:1px 8px;border-radius:4px;font-size:10px;font-weight:600}
+.tg.ext{background:rgba(20,184,166,.08);color:var(--acc-cyan);border:1px solid rgba(20,184,166,.12)}
+.tg.int{background:rgba(249,115,22,.08);color:var(--acc-orange);border:1px solid rgba(249,115,22,.12)}
+.tg.dual{background:rgba(239,68,68,.08);color:var(--acc-red);border:1px solid rgba(239,68,68,.12)}
+.gb{background:rgba(255,255,255,.03);padding:1px 8px;border-radius:4px;font-size:10px;font-weight:600;color:var(--text2)}
+.gr{font-size:11px;font-weight:700;color:var(--acc-green)}
+.tpb{background:rgba(167,139,250,.06);color:var(--acc-purple);padding:1px 8px;border-radius:4px;font-size:10px;font-weight:600}
+.tmb{font-size:9px;color:var(--text3)}
+.prb{padding:4px 12px;border-radius:6px;font-size:10px;font-weight:600;cursor:pointer;border:1px solid rgba(249,115,22,.18);background:rgba(249,115,22,.08);color:var(--acc-orange);transition:all .12s}
+.prb:hover{background:rgba(249,115,22,.15)}
 
-/* ===== KEYFRAMES ===== */
-@keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
-@keyframes cardIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+/* HOT CARD */
+.hc{
+  background:var(--card);border-radius:12px;padding:12px 16px 12px;
+  cursor:pointer;border:1px solid var(--border);
+  transition:all .15s;
+}
+.hc:hover{border-color:rgba(239,68,68,.15);transform:translateY(-1px)}
+.hbr{height:2.5px;background:rgba(255,255,255,.03);border-radius:2px;margin-bottom:10px;overflow:hidden}
+.hfl{height:100%;border-radius:2px;background:linear-gradient(90deg,var(--acc-red),var(--acc-orange));transition:width .3s}
+.hc .top{display:flex;justify-content:space-between}
+.hc .tl{font-size:13px;font-weight:700;line-height:1.35;max-width:62%;letter-spacing:-.1px;color:var(--text)}
+.hc .sc{font-size:22px;font-weight:800;font-family:'Space Grotesk',sans-serif;color:var(--acc-red);line-height:1}
+.hc .slb{font-size:9px;color:var(--text3);text-align:right;letter-spacing:.5px}
+.hc .bd{margin-top:6px;display:flex;flex-wrap:wrap;gap:4px;align-items:center}
+.tg.comm{background:rgba(249,115,22,.08);color:#fb923c;border:1px solid rgba(249,115,22,.12)}
+.tg.glbl{background:rgba(239,68,68,.08);color:var(--acc-red);border:1px solid rgba(239,68,68,.12)}
+.hs{font-size:10px;color:var(--text3)}
+.hs strong{color:var(--text2);font-weight:700}
+.lf{font-size:10px;font-weight:600;padding:1px 8px;border-radius:4px}
+.lf.up{background:rgba(34,197,94,.08);color:var(--acc-green);border:1px solid rgba(34,197,94,.12)}
+.lf.peak{background:rgba(239,68,68,.08);color:var(--acc-red);border:1px solid rgba(239,68,68,.12)}
+.lf.dec{background:rgba(255,255,255,.03);color:var(--text3);border:1px solid var(--border)}
+.hc .bt{margin-top:8px;display:flex;gap:4px}
 
-/* ===== SCROLLBAR ===== */
-::-webkit-scrollbar{width:4px}
+/* EMPTY */
+.emp{grid-column:1/-1;padding:40px;text-align:center;color:var(--text3);font-size:12px}
+.emp .ic{font-size:28px;margin-bottom:8px;opacity:.4}
+
+/* DRAWER */
+.dr{position:fixed;top:0;right:0;bottom:0;width:420px;max-width:90vw;
+  background:var(--bg2);z-index:1000;transform:translateX(100%);
+  transition:transform .25s;overflow-y:auto;border-left:1px solid var(--border)}
+.dr.open{transform:translateX(0)}
+.ol{position:fixed;inset:0;background:rgba(0,0,0,.3);z-index:999;opacity:0;pointer-events:none;transition:opacity .15s}
+.ol.show{opacity:1;pointer-events:auto}
+.dh{display:flex;padding:20px 20px 14px;border-bottom:1px solid var(--border)}
+.di{flex:1;min-width:0}
+.dt{font-size:15px;font-weight:700;line-height:1.35;color:var(--text)}
+.dm{font-size:11px;color:var(--text3);margin-top:3px;display:flex;gap:6px;flex-wrap:wrap}
+.ds{font-size:26px;font-weight:800;font-family:'Space Grotesk',sans-serif;margin-right:8px}
+.ds.o{color:var(--acc-orange)}
+.ds.r{color:var(--acc-red)}
+.dsl{font-size:9px;color:var(--text3);text-align:right}
+.dcl{width:28px;height:28px;border-radius:6px;background:var(--bg3);border:1px solid var(--border);
+  font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--text3);flex-shrink:0}
+.dcl:hover{background:var(--card);color:var(--text)}
+.ds{padding:14px 20px;border-bottom:1px solid var(--border)}
+.ds:last-child{border:none}
+.ds h4{font-size:10px;font-weight:700;color:var(--text3);margin-bottom:10px;letter-spacing:.8px}
+.dr{display:flex;gap:14px}
+.di2 .v{font-size:14px;font-weight:700;font-family:'Space Grotesk',sans-serif;color:var(--text)}
+.di2 .l{font-size:9px;color:var(--text3);margin-top:1px}
+.nl{display:flex;flex-direction:column;gap:5px}
+.ni{display:flex;align-items:center;gap:8px;padding:8px 10px;background:var(--card);border-radius:8px;border:1px solid var(--border);cursor:pointer}
+.ni:hover{background:var(--bg3)}
+.ni .ic{width:24px;height:24px;border-radius:5px;background:var(--bg3);display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0}
+.ni .info{flex:1;min-width:0}
+.ni .info .t{font-size:11px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:var(--text)}
+.ni .info .s{font-size:9px;color:var(--text3);margin-top:1px}
+.ni .lk{font-size:9px;color:var(--acc-cyan);font-weight:600}
+.ac{background:var(--card);border-radius:8px;padding:12px;border:1px solid var(--border);font-size:12px;line-height:1.5;color:var(--text2)}
+.ac .l{font-size:9px;font-weight:700;color:var(--text3);margin-bottom:4px;letter-spacing:.5px}
+.ac .rw{display:flex;gap:8px;margin-top:6px}
+.at{padding:2px 8px;border-radius:4px;font-size:9px;font-weight:600;background:var(--bg3);color:var(--text2);border:1px solid var(--border)}
+
+/* MODAL */
+.md{position:fixed;inset:0;z-index:2000;display:none;align-items:center;justify-content:center}
+.md.show{display:flex}
+.mb{position:absolute;inset:0;background:rgba(0,0,0,.4)}
+.mc{position:relative;background:var(--bg2);border-radius:14px;width:400px;max-width:90vw;padding:20px;border:1px solid var(--border)}
+.mc h3{font-size:14px;font-weight:700;margin-bottom:14px;color:var(--text)}
+.ms{width:100%;padding:7px 12px;border-radius:8px;background:var(--card);border:1px solid var(--border);font-size:11px;color:var(--text);outline:none;margin-bottom:10px}
+.ms:focus{border-color:rgba(249,115,22,.2)}
+.gl{display:grid;grid-template-columns:1fr 1fr;gap:3px;max-height:220px;overflow-y:auto}
+.gi{display:flex;align-items:center;gap:6px;padding:5px 8px;border-radius:6px;cursor:pointer;font-size:11px;color:var(--text2)}
+.gi:hover{background:var(--bg3);color:var(--text)}
+.gi input{accent-color:var(--acc-orange);width:13px;height:13px;cursor:pointer}
+.mf{display:flex;justify-content:space-between;align-items:center;margin-top:12px;padding-top:12px;border-top:1px solid var(--border)}
+.mf .cn{font-size:10px;color:var(--text3)}
+.mf .cn strong{color:var(--text2)}
+.ma{display:flex;gap:4px}
+.mb2{padding:5px 14px;border-radius:6px;font-size:10px;font-weight:600;cursor:pointer;border:none}
+.mb2.pr{background:var(--grd-orange);color:#fff}
+.mb2.pr:hover{opacity:.9}
+.mb2.sc{background:var(--card);color:var(--text2);border:1px solid var(--border)}
+.mb2.sc:hover{background:var(--bg3);color:var(--text)}
+.tt{position:fixed;bottom:28px;left:50%;transform:translate(-50%,16px);background:var(--bg2);color:var(--text);padding:8px 20px;border-radius:8px;font-size:12px;font-weight:500;z-index:3000;border:1px solid var(--border);opacity:0;transition:all .2s;pointer-events:none}
+.tt.show{opacity:1;transform:translate(-50%,0)}
+::-webkit-scrollbar{width:3px}
 ::-webkit-scrollbar-track{background:transparent}
 ::-webkit-scrollbar-thumb{background:var(--bg3);border-radius:2px}
-::-webkit-scrollbar-thumb:hover{background:var(--text3)}
 </style>
 </head>
 <body>
-<div class="app" id="app">
-  <!-- HEADER -->
+<div class="app">
   <div class="header">
     <h1>◈ 竞技游戏趋势</h1>
     <div class="tabs" id="tabs">
-      <div class="tab active" data-tab="trend">🚀 实时趋势</div>
-      <div class="tab" data-tab="hot">🔥 热点</div>
+      <div class="tab active" data-t="trend">🚀 实时趋势</div>
+      <div class="tab" data-t="hot">🔥 热点</div>
     </div>
     <div class="header-right">
-      <span class="sub-text">🎯 已关注 <strong id="subCount">14</strong>/14</span>
-      <button class="sub-btn" id="subBtn">管理</button>
-      <span class="sub-text" id="updateTime">—</span>
+      <span class="sub-text">🎯 <strong id="sc">14</strong>/14</span>
+      <button class="sub-btn" id="sbb">管理</button>
+      <span class="sub-text" id="ut">—</span>
     </div>
   </div>
 
-  <!-- STATS -->
-  <div class="stats" id="stats">
-    <div class="stat"><div class="n" id="statTrend">—</div><div class="l">趋势总数</div></div>
-    <div class="stat bl"><div class="n cyan" id="statBlue">—</div><div class="l">蓝海选题</div></div>
-    <div class="stat"><div class="n orange" id="statInternal">—</div><div class="l">站内苗头</div></div>
-    <div class="stat ro"><div class="n pink" id="statHot">—</div><div class="l">热点</div></div>
+  <div class="stats">
+    <div class="stat"><div class="n" id="st1">—</div><div class="l">趋势</div></div>
+    <div class="stat"><div class="n c" id="st2">—</div><div class="l">蓝海选题</div></div>
+    <div class="stat"><div class="n o" id="st3">—</div><div class="l">站内苗头</div></div>
+    <div class="stat"><div class="n r" id="st4">—</div><div class="l">热点</div></div>
   </div>
 
-  <!-- FILTERS -->
-  <div class="filters" id="filters">
-    <div class="f-btn active" data-filter="game-all">全部游戏</div>
-    <div class="f-btn" data-filter="game-王者荣耀">王者荣耀</div>
-    <div class="f-btn" data-filter="game-和平精英">和平精英</div>
-    <div class="f-btn" data-filter="game-三角洲行动">三角洲</div>
-    <div class="f-btn" data-filter="game-金铲铲之战">金铲铲</div>
-    <div class="f-divider"></div>
-    <div class="f-btn active" data-filter="type-all">全部类型</div>
-    <div class="f-btn" data-filter="type-创作型">创作型</div>
-    <div class="f-btn" data-filter="type-讨论型">讨论型</div>
+  <div class="filters" id="fl">
+    <div class="f-btn active" d-f="game-all">全部游戏</div>
+    <div class="f-btn" d-f="game-王者荣耀">王者</div>
+    <div class="f-btn" d-f="game-和平精英">和平</div>
+    <div class="f-btn" d-f="game-三角洲行动">三角洲</div>
+    <div class="f-btn" d-f="game-金铲铲之战">金铲铲</div>
+    <div class="fd"></div>
+    <div class="f-btn active" d-f="type-all">全部</div>
+    <div class="f-btn" d-f="type-创作型">创作</div>
+    <div class="f-btn" d-f="type-讨论型">讨论</div>
   </div>
 
-  <div id="trendSection">
-    <div class="section">
-      <div class="badge trend">实时趋势</div>
-      <span class="count" id="trendCount"></span>
-    </div>
-    <div class="grid" id="trendGrid"></div>
+  <div id="ts">
+    <div class="section"><div class="badge t">实时趋势</div><span class="cnt" id="tc"></span></div>
+    <div class="grid" id="tg"></div>
   </div>
-
-  <div id="hotSection" style="display:none">
-    <div class="section">
-      <div class="badge hot">热点</div>
-      <span class="count" id="hotCount"></span>
-    </div>
-    <div class="grid" id="hotGrid"></div>
+  <div id="hs" style="display:none">
+    <div class="section"><div class="badge h">热点</div><span class="cnt" id="hc"></span></div>
+    <div class="grid" id="hg"></div>
   </div>
 </div>
 
-<div class="overlay" id="overlay"></div>
-
-<div class="drawer" id="drawer">
-  <div class="d-header">
-    <div class="d-info">
-      <div class="d-title" id="dTitle">—</div>
-      <div class="d-meta">
-        <span id="dGame">—</span>
-        <span id="dSource">—</span>
-        <span id="dType">—</span>
-      </div>
-    </div>
-    <div style="text-align:right;margin-right:10px">
-      <div class="d-score" id="dScore">—</div>
-      <div class="d-sl" id="dScoreLabel">势能</div>
-    </div>
-    <button class="d-close" id="dClose">✕</button>
+<div class="ol" id="ol"></div>
+<div class="dr" id="dr">
+  <div class="dh">
+    <div class="di"><div class="dt" id="dt">—</div><div class="dm" id="dm"><span id="dg">—</span><span id="dso">—</span><span id="dty">—</span></div></div>
+    <div style="text-align:right;margin-right:8px"><div class="ds" id="ds">—</div><div class="dsl" id="dsl">势能</div></div>
+    <button class="dcl" id="dcl">✕</button>
   </div>
-
-  <div class="d-section">
-    <h4>数据概览</h4>
-    <div class="data-row">
-      <div class="data-item"><div class="v" id="dStat1">—</div><div class="lbl" id="dStat1l">—</div></div>
-      <div class="data-item"><div class="v" id="dStat2">—</div><div class="lbl" id="dStat2l">—</div></div>
-      <div class="data-item"><div class="v" id="dStat3">—</div><div class="lbl" id="dStat3l">—</div></div>
-    </div>
-  </div>
-
-  <div class="d-section">
-    <h4>样本笔记</h4>
-    <div class="note-list" id="dNotes"></div>
-  </div>
-
-  <div class="d-section">
-    <h4>AI 切入建议</h4>
-    <div class="ai-card">
-      <div class="lbl">建议方向</div>
-      <div id="dAiText">—</div>
-      <div class="row">
-        <span class="ai-tag" id="dDifficulty">—</span>
-        <span class="ai-tag" id="dAccept">—</span>
-      </div>
-    </div>
-  </div>
+  <div class="ds"><h4>数据概览</h4><div class="dr"><div class="di2"><div class="v" id="dd1">—</div><div class="l" id="dd1l">—</div></div><div class="di2"><div class="v" id="dd2">—</div><div class="l" id="dd2l">—</div></div><div class="di2"><div class="v" id="dd3">—</div><div class="l" id="dd3l">—</div></div></div></div>
+  <div class="ds"><h4>样本笔记</h4><div class="nl" id="dn"></div></div>
+  <div class="ds"><h4>AI 建议</h4><div class="ac"><div class="l">切入方向</div><div id="dai">—</div><div class="rw"><span class="at" id="ddf">—</span><span class="at" id="dac">—</span></div></div></div>
 </div>
 
-<!-- GAME SUB MODAL -->
-<div class="modal" id="subModal">
-  <div class="modal-bg" id="subBg"></div>
-  <div class="modal-card">
+<div class="md" id="md">
+  <div class="mb" id="mbb"></div>
+  <div class="mc">
     <h3>管理关注游戏</h3>
-    <input class="modal-search" id="subSearch" placeholder="搜索游戏…">
-    <div class="game-list" id="subGames"></div>
-    <div class="modal-footer">
-      <span class="count">已关注 <strong id="subChecked">14</strong>/14</span>
-      <div class="mod-actions">
-        <button class="mod-btn sec" id="subAll">全选</button>
-        <button class="mod-btn sec" id="subClear">清除</button>
-        <button class="mod-btn pri" id="subSave">保存</button>
-      </div>
-    </div>
+    <input class="ms" id="msr" placeholder="搜索…">
+    <div class="gl" id="gl"></div>
+    <div class="mf"><span class="cn">已关注 <strong id="mcn">14</strong>/14</span><div class="ma"><button class="mb2 sc" id="mal">全选</button><button class="mb2 sc" id="mcl">清除</button><button class="mb2 pr" id="msv">保存</button></div></div>
   </div>
 </div>
-
-<div class="toast" id="toast"></div>
+<div class="tt" id="tt"></div>
 
 <script>
-const GAMES=['王者荣耀','和平精英','三角洲行动','金铲铲之战','英雄联盟','无畏契约','火影忍者','PUBG','暗区突围','永劫无间','CSGO','穿越火线：枪战王者','DOTA2','王者万象棋']
-const TYPES=['创作型','讨论型','双重']
-const SRC_TREND=['站外热','站内苗头','双重信号']
-const SRC_HOT=['全网热点','社区热点']
-const LIFES=['上升期','高峰期','衰退期']
-const rand=a=>a[Math.floor(Math.random()*a.length)]
-const rn=(a,b)=>Math.floor(Math.random()*(b-a+1))+a
+const G='王者荣耀,和平精英,三角洲行动,金铲铲之战,英雄联盟,无畏契约,火影忍者,PUBG,暗区突围,永劫无间,CSGO,穿越火线：枪战王者,DOTA2,王者万象棋'.split(',')
+const TY=['创作型','讨论型','双重']
+const ST=['站外热','站内苗头','双重信号']
+const SH=['全网热点','社区热点']
+const LI=['上升期','高峰期','衰退期']
+const rr=a=>a[Math.random()*a.length|0]
+const ri=(a,b)=>Math.random()*(b-a+1)|0+a
 
-// Generate mock with detection time
-const TRENDS=Array.from({length:12},(_,i)=>({
-  id:'tr-'+i,
-  title:['一句台词玩梗挑战','角色cos初音未来','打野梯度排行','游戏BGM卡点','新赛季英雄调整','极限操作集锦','游戏CG混剪','队友神操作','游戏彩蛋发现','版本更新预测','逆风翻盘教学','台词模仿挑战'][i],
-  game:rand(GAMES),momentum:rn(62,95),growth:rn(80,450),
-  notes6h:rn(60,280),trendType:rand(TYPES),
-  source:rand(SRC_TREND),hoursAgo:rn(1,8),
-  ai:'适合创作方向：用游戏角色BGM配经典台词做二创，参考复刻方向为短视频。',
-  difficulty:'中',accept:'短视频'
+const TR=Array.from({length:12},(_,i)=>({
+  id:'t'+i,
+  tl:['一句台词玩梗挑战','角色cos初音未来','打野梯度排行','游戏BGM卡点','新赛季调整','操作集锦','游戏CG混剪','队友神操作','彩蛋发现','版本预测','翻盘教学','台词模仿'][i],
+  gm:rr(G),mo:ri(62,95),gr:ri(80,450),n6:ri(60,280),ty:rr(TY),so:rr(ST),ha:ri(1,8),
+  ai:'创作方向：用角色BGM配台词做二创，建议短视频。',di:'中',ac:'短视频'
 }))
 
-const HOT=Array.from({length:8},(_,i)=>({
-  id:'ht-'+i,
-  title:['角色cos日常穿搭挑战','和平精英变装挑战','金铲铲阵容攻略','英雄联盟赛事观赛','无畏契约对枪技巧','王者荣耀赛季回顾','游戏角色仿妆挑战','电竞战队应援创作'][i],
-  game:rand(GAMES),heatScore:rn(63,93),notesTotal:rn(2000,8500),
-  ces:rn(25,88),last24h:rn(300,1200),
-  lifecycle:rand(LIFES),trendType:rand(TYPES),
-  source:rand(SRC_HOT),hoursAgo:rn(4,36),
-  ai:'持续增长中，建议加大通告投入，创作者可产出图文+短视频。',
-  difficulty:'中',accept:'通告'
+const HO=Array.from({length:8},(_,i)=>({
+  id:'h'+i,
+  tl:['角色cos日常穿搭','和平精英变装','金铲铲攻略合集','英雄联盟观赛','无畏契约技巧','王者赛季回顾','角色仿妆','应援创作'][i],
+  gm:rr(G),hs:ri(63,93),nt:ri(2000,8500),ce:ri(25,88),l24:ri(300,1200),
+  lc:rr(LI),ty:rr(TY),so:rr(SH),ha:ri(4,36),
+  ai:'持续增长，建议加大通告。',di:'中',ac:'通告'
 }))
 
-let tab='trend', filterGame='all', filterType='all', subscribed=GAMES.slice()
-try{const s=localStorage.getItem('subscribed_games');if(s)subscribed=JSON.parse(s)}catch(e){}
+let tb='trend',fg='all',ft='all',sb=G.slice()
+try{const s=localStorage.getItem('sg');if(s)sb=JSON.parse(s)}catch(e){}
 
-function render(){
-  const g=document.getElementById('trendGrid')
-  const h=document.getElementById('hotGrid')
-  let ti=TRENDS.filter(t=>{
-    if(filterGame!='all'&&t.game!=filterGame)return 0
-    if(filterType!='all'&&t.trendType!=filterType)return 0
-    return subscribed.includes(t.game)
-  })
-  let hi=HOT.filter(t=>{
-    if(filterGame!='all'&&t.game!=filterGame)return 0
-    if(filterType!='all'&&t.trendType!=filterType)return 0
-    return subscribed.includes(t.game)
-  })
-
-  document.getElementById('trendCount').innerHTML=`<span>${ti.length}</span> 条趋势`
-  document.getElementById('hotCount').innerHTML=`<span>${hi.length}</span> 条热点`
-  document.getElementById('statTrend').textContent=ti.length
-  document.getElementById('statBlue').textContent=ti.filter(t=>t.source=='站外热'||t.source=='双重信号').length
-  document.getElementById('statInternal').textContent=ti.filter(t=>t.source=='站内苗头').length
-  document.getElementById('statHot').textContent=hi.length
-  document.getElementById('subCount').textContent=subscribed.length
-
-  g.innerHTML=ti.length?ti.map(t=>`<div class="t-card" data-id="${t.id}">
-    <div class="top"><div class="title">${t.title}</div>
-      <div><div class="score">${t.momentum}</div><div class="sl">势能</div></div></div>
-    <div class="body">
-      <span class="tag ${t.source=='站外热'?'ext':t.source=='站内苗头'?'int':'dual'}">${t.source}</span>
-      <span class="game-badge">${t.game}</span>
-      <span class="grow">↑${t.growth}%</span>
-      <span class="type-badge">${t.trendType}</span>
-      <span class="time-badge">⏱ ${t.hoursAgo}h前</span>
-    </div>
-    <div class="bot">
-      <button class="b-btn pri view-btn" data-id="${t.id}" data-type="trend">查看详情</button>
-    </div>
-  </div>`).join(''):'<div class="empty"><div class="icon">📡</div>暂无实时趋势 · 6h后自动刷新</div>'
-
-  h.innerHTML=hi.length?hi.map(t=>`<div class="h-card" data-id="${t.id}">
-    <div class="h-bar"><div class="h-fill" style="width:${t.heatScore}%"></div></div>
-    <div class="top"><div class="title">${t.title}</div>
-      <div><div class="score">${t.heatScore}</div><div class="sl">热度</div></div></div>
-    <div class="body">
-      <span class="tag ${t.source=='全网热点'?'glbl':'comm'}">${t.source}</span>
-      <span class="game-badge">${t.game}</span>
-      <span class="h-stat">发布 <strong>${t.notesTotal>=1000?(t.notesTotal/1000).toFixed(1)+'k':t.notesTotal}</strong></span>
-      <span class="h-stat">CES <strong>${t.ces}w</strong></span>
-      <span class="life ${t.lifecycle=='上升期'?'up':t.lifecycle=='高峰期'?'peak':'decline'}">
-        ${t.lifecycle=='上升期'?'📈':t.lifecycle=='高峰期'?'🔝':'📉'}${t.lifecycle}
-      </span>
-      <span class="time-badge hot">⏱ ${t.hoursAgo}h前</span>
-    </div>
-    <div class="bot">
-      <button class="b-btn pri view-btn" data-id="${t.id}" data-type="hot">查看详情</button>
-    </div>
-  </div>`).join(''):'<div class="empty"><div class="icon">🔥</div>暂无热点 · 6h后自动刷新</div>'
-
-  document.querySelectorAll('.view-btn').forEach(b=>b.addEventListener('click',e=>{
-    e.stopPropagation()
-    const id=b.dataset.id,type=b.dataset.type
-    const pool=type=='trend'?TRENDS:HOT
+function rd(){
+  const ti=TR.filter(t=>(fg=='all'||t.gm==fg)&&(ft=='all'||t.ty==ft)&&sb.includes(t.gm))
+  const hi=HO.filter(t=>(fg=='all'||t.gm==fg)&&(ft=='all'||t.ty==ft)&&sb.includes(t.gm))
+  document.getElementById('tc').innerHTML='<span>'+ti.length+'</span> 条'
+  document.getElementById('hc').innerHTML='<span>'+hi.length+'</span> 条'
+  document.getElementById('st1').textContent=ti.length
+  document.getElementById('st2').textContent=ti.filter(t=>t.so=='站外热'||t.so=='双重信号').length
+  document.getElementById('st3').textContent=ti.filter(t=>t.so=='站内苗头').length
+  document.getElementById('st4').textContent=hi.length
+  document.getElementById('sc').textContent=sb.length
+  const g=document.getElementById('tg'),h=document.getElementById('hg')
+  g.innerHTML=ti.length?ti.map(t=>'<div class=tc data-i='+t.id+'><div class=top><div class=tl>'+t.tl+'</div><div><div class=sc>'+t.mo+'</div><div class=slb>势能</div></div></div><div class=bd>'+'<span class="tg ext">'+t.so+'</span><span class=gb>'+t.gm+'</span><span class=gr>↑'+t.gr+'%</span><span class=tpb>'+t.ty+'</span><span class=tmb>⏱'+t.ha+'h前</span></div><div class=bt><button class=prb>查看详情</button></div></div>').join(''):'<div class=emp><div class=ic>📡</div>暂无趋势 · 6h后刷新</div>'
+  h.innerHTML=hi.length?hi.map(t=>'<div class=hc data-i='+t.id+'><div class=hbr><div class=hfl style=width:'+t.hs+'%></div></div><div class=top><div class=tl>'+t.tl+'</div><div><div class=sc>'+t.hs+'</div><div class=slb>热度</div></div></div><div class=bd>'+'<span class="tg '+(t.so=='全网热点'?'glbl':'comm')+'">'+t.so+'</span><span class=gb>'+t.gm+'</span><span class=hs>发布 <strong>'+(t.nt/1000).toFixed(1)+'k</strong></span><span class=hs>CES <strong>'+t.ce+'w</strong></span><span class="lf '+(t.lc=='上升期'?'up':t.lc=='高峰期'?'peak':'dec')+'">'+(t.lc=='上升期'?'📈':t.lc=='高峰期'?'🔝':'📉')+t.lc+'</span><span class=tmb>⏱'+t.ha+'h前</span></div><div class=bt><button class=prb>详情</button></div></div>').join(''):'<div class=emp><div class=ic>🔥</div>暂无热点 · 6h后刷新</div>'
+  document.querySelectorAll('.prb').forEach(b=>b.addEventListener('click',e=>{e.stopPropagation()
+    const c=e.target.closest('[data-i]');if(!c)return
+    const id=c.dataset.i,pool=c.closest('.tc')?TR:HO
     const item=pool.find(x=>x.id==id)
-    if(item)openDetail(item,type)
+    if(item){const is=!!c.closest('.tc')
+      document.getElementById('dt').textContent=item.tl
+      document.getElementById('dg').textContent=item.gm
+      document.getElementById('dso').textContent=item.so
+      document.getElementById('dty').textContent=item.ty
+      const se=document.getElementById('ds');se.className='ds '+(is?'o':'r')
+      se.textContent=is?item.mo:item.hs
+      document.getElementById('dsl').textContent=is?'势能':'热度'
+      document.getElementById('dd1l').textContent=is?'增速':'累计发布'
+      document.getElementById('dd1').textContent=is?'↑'+item.gr+'%':(item.nt/1000).toFixed(1)+'k'
+      document.getElementById('dd2l').textContent=is?'近6h笔记':'CES'
+      document.getElementById('dd2').textContent=is?item.n6:item.ce+'w'
+      document.getElementById('dd3l').textContent='出现'
+      document.getElementById('dd3').textContent=item.ha+'h前'
+      document.getElementById('dn').innerHTML=[{t:item.tl+' · 小红书',s:'❤️ 12k · 站内',i:'📱'},{t:item.tl+' · 抖音',s:'❤️ 8k · 站外',i:'🎬'},{t:item.tl+' · B站',s:'❤️ 5k · 站外',i:'▶️'}].map(n=>'<div class=ni onclick="alert(\'打开笔记\')"><div class=ic>'+n.i+'</div><div class=info><div class=t>'+n.t+'</div><div class=s>'+n.s+'</div></div><span class=lk>打开→</span></div>').join('')
+      document.getElementById('dai').textContent=item.ai
+      document.getElementById('ddf').textContent='复刻 · '+item.di
+      document.getElementById('dac').textContent='承接 · '+item.ac
+      document.getElementById('dr').classList.add('open')
+      document.getElementById('ol').classList.add('show')
+    }
   }))
 }
-render()
-
-// Detail drawer
-function openDetail(item,type){
-  const is=type=='trend'
-  document.getElementById('dTitle').textContent=item.title
-  document.getElementById('dGame').textContent=item.game
-  document.getElementById('dSource').textContent=item.source
-  document.getElementById('dType').textContent=item.trendType
-  const sc=document.getElementById('dScore')
-  sc.className='d-score '+(is?'orange':'pink')
-  sc.textContent=is?item.momentum:item.heatScore
-  document.getElementById('dScoreLabel').textContent=is?'势能':'热度'
-  if(is){
-    document.getElementById('dStat1l').textContent='增速'
-    document.getElementById('dStat1').textContent='↑'+item.growth+'%'
-    document.getElementById('dStat2l').textContent='近6h笔记'
-    document.getElementById('dStat2').textContent=item.notes6h
-    document.getElementById('dStat3l').textContent='出现时长'
-    document.getElementById('dStat3').textContent=item.hoursAgo+'小时前'
-  } else {
-    document.getElementById('dStat1l').textContent='累计发布'
-    document.getElementById('dStat1').textContent=item.notesTotal>=1000?(item.notesTotal/1000).toFixed(1)+'k':item.notesTotal
-    document.getElementById('dStat2l').textContent='CES'
-    document.getElementById('dStat2').textContent=item.ces+'w'
-    document.getElementById('dStat3l').textContent='持续时长'
-    document.getElementById('dStat3').textContent=item.hoursAgo+'小时前'
-  }
-  document.getElementById('dNotes').innerHTML=[
-    {t:item.title+' · 站内热门',s:'❤️ 12.3k · 小红书',i:'📱'},
-    {t:item.title+' · 抖音爆款',s:'❤️ 8.9k · 抖音',i:'🎬'},
-    {t:item.title+' · B站热门',s:'❤️ 5.6k · Bilibili',i:'▶️'},
-  ].map(n=>`<div class="note-item" onclick="alert('打开笔记: ${n.t}')">
-    <div class="n-icon">${n.i}</div><div class="n-info"><div class="t">${n.t}</div><div class="sub">${n.s}</div></div>
-    <span class="link">打开→</span>
-  </div>`).join('')
-  document.getElementById('dAiText').textContent=item.ai
-  document.getElementById('dDifficulty').textContent='复刻 · '+item.difficulty
-  document.getElementById('dAccept').textContent='承接 · '+item.accept
-  document.getElementById('drawer').classList.add('open')
-  document.getElementById('overlay').classList.add('show')
+rd()
+document.getElementById('dcl').addEventListener('click',()=>{document.getElementById('dr').classList.remove('open');document.getElementById('ol').classList.remove('show')})
+document.getElementById('ol').addEventListener('click',()=>{document.getElementById('dr').classList.remove('open');document.getElementById('ol').classList.remove('show')})
+document.querySelectorAll('.tab').forEach(t=>t.addEventListener('click',function(){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));this.classList.add('active');tb=this.dataset.t;document.getElementById('ts').style.display=tb=='trend'?'':'none';document.getElementById('hs').style.display=tb=='hot'?'':'none'}))
+document.querySelectorAll('.f-btn').forEach(b=>b.addEventListener('click',function(){const f=this.getAttribute('d-f');if(f.startsWith('game-')){document.querySelectorAll('[d-f^="game-"]').forEach(b=>b.classList.remove('active'));this.classList.add('active');fg=f.slice(5)}else{document.querySelectorAll('[d-f^="type-"]').forEach(b=>b.classList.remove('active'));this.classList.add('active');ft=f.slice(5)}rd()}))
+document.getElementById('sbb').addEventListener('click',os);document.getElementById('mbb').addEventListener('click',()=>document.getElementById('md').classList.remove('show'))
+document.getElementById('msr').addEventListener('input',os);document.getElementById('mal').addEventListener('click',()=>{document.querySelectorAll('#gl input').forEach(c=>c.checked=true);uc()})
+document.getElementById('mcl').addEventListener('click',()=>{document.querySelectorAll('#gl input').forEach(c=>c.checked=false);uc()})
+document.getElementById('msv').addEventListener('click',()=>{sb=[...document.querySelectorAll('#gl input:checked')].map(c=>c.value);localStorage.setItem('sg',JSON.stringify(sb));document.getElementById('md').classList.remove('show');rd();tt('已保存')})
+function os(){const q=document.getElementById('msr').value.toLowerCase()
+  document.getElementById('gl').innerHTML=G.filter(g=>g.toLowerCase().includes(q)).map(g=>'<label class=gi><input type=checkbox value="'+g+'" '+(sb.includes(g)?'checked':'')+'>'+g+'</label>').join('')
+  uc();document.getElementById('md').classList.add('show')
 }
-document.getElementById('dClose').addEventListener('click',()=>{document.getElementById('drawer').classList.remove('open');document.getElementById('overlay').classList.remove('show')})
-document.getElementById('overlay').addEventListener('click',()=>{document.getElementById('drawer').classList.remove('open');document.getElementById('overlay').classList.remove('show')})
-
-// Tabs
-document.querySelectorAll('.tab').forEach(t=>t.addEventListener('click',function(){
-  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'))
-  this.classList.add('active');tab=this.dataset.tab
-  document.getElementById('trendSection').style.display=tab=='trend'?'block':'none'
-  document.getElementById('hotSection').style.display=tab=='hot'?'block':'none'
-}))
-
-// Filters
-document.querySelectorAll('.f-btn').forEach(b=>b.addEventListener('click',function(){
-  const f=this.dataset.filter
-  if(f.startsWith('game-')){
-    document.querySelectorAll('[data-filter^="game-"]').forEach(b=>b.classList.remove('active'))
-    this.classList.add('active');filterGame=f.replace('game-','')
-  } else if(f.startsWith('type-')){
-    document.querySelectorAll('[data-filter^="type-"]').forEach(b=>b.classList.remove('active'))
-    this.classList.add('active');filterType=f.replace('type-','')
-  }
-  render()
-}))
-
-// Game sub
-document.getElementById('subBtn').addEventListener('click',openSub)
-document.getElementById('subBg').addEventListener('click',()=>document.getElementById('subModal').classList.remove('show'))
-document.getElementById('subSearch').addEventListener('input',renderSubGames)
-document.getElementById('subAll').addEventListener('click',()=>{document.querySelectorAll('#subGames input').forEach(c=>c.checked=true);updateSubCount()})
-document.getElementById('subClear').addEventListener('click',()=>{document.querySelectorAll('#subGames input').forEach(c=>c.checked=false);updateSubCount()})
-document.getElementById('subSave').addEventListener('click',()=>{
-  subscribed=[...document.querySelectorAll('#subGames input:checked')].map(c=>c.value)
-  localStorage.setItem('subscribed_games',JSON.stringify(subscribed))
-  document.getElementById('subModal').classList.remove('show');render();toast('游戏关注配置已保存')
-})
-
-function openSub(){
-  const q=document.getElementById('subSearch').value.toLowerCase()
-  document.getElementById('subGames').innerHTML=GAMES.filter(g=>g.toLowerCase().includes(q)).map(g=>`<label class="game-item"><input type="checkbox" value="${g}" ${subscribed.includes(g)?'checked':''}>${g}</label>`).join('')
-  updateSubCount();document.getElementById('subModal').classList.add('show')
-}
-function renderSubGames(){openSub()}
-function updateSubCount(){document.getElementById('subChecked').textContent=document.querySelectorAll('#subGames input:checked').length}
-
-function toast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2000)}
-
-const n=new Date();document.getElementById('updateTime').textContent=`${String(n.getHours()).padStart(2,'0')}:${String(n.getMinutes()).padStart(2,'0')}`
+function uc(){document.getElementById('mcn').textContent=document.querySelectorAll('#gl input:checked').length}
+function tt(m){const t=document.getElementById('tt');t.textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2000)}
+const n=new Date();document.getElementById('ut').textContent=String(n.getHours()).padStart(2,'0')+':'+String(n.getMinutes()).padStart(2,'0')
 </script>
 </body>
 </html>
