@@ -360,7 +360,7 @@ body{
 <script>
 const G='王者荣耀,和平精英,三角洲行动,金铲铲之战,英雄联盟,无畏契约,火影忍者,PUBG,暗区突围,永劫无间,CSGO,穿越火线：枪战王者,DOTA2,王者万象棋'.split(',')
 const TY=['创作型','讨论型','双重']
-const ST=['站外热','站内苗头','双重信号']
+const ST=['蓝海选题','站内苗头']
 const SH=['全网热点','社区热点']
 const LI=['上升期','高峰期','衰退期']
 const rr=a=>a[Math.random()*a.length|0]
@@ -390,12 +390,12 @@ function rd(){
   document.getElementById('tc').innerHTML='<span>'+ti.length+'</span> 条'
   document.getElementById('hc').innerHTML='<span>'+hi.length+'</span> 条'
   document.getElementById('st1').textContent=ti.length
-  document.getElementById('st2').textContent=ti.filter(t=>t.so=='站外热'||t.so=='双重信号').length
+  document.getElementById('st2').textContent=ti.filter(t=>t.so=='蓝海选题').length
   document.getElementById('st3').textContent=ti.filter(t=>t.so=='站内苗头').length
   document.getElementById('st4').textContent=hi.length
   document.getElementById('sc').textContent=sb.length
   const g=document.getElementById('tg'),h=document.getElementById('hg')
-  g.innerHTML=ti.length?ti.map(t=>'<div class=tc data-i='+t.id+'><div class=top><div class=tl>'+t.tl+'</div><div><div class=sc>'+t.mo+'</div><div class=slb>势能</div></div></div><div class=bd>'+'<span class="tg '+(t.so=='站外热'?'ext':t.so=='站内苗头'?'int':'dual')+'">'+t.so+'</span><span class=gb>'+t.gm+'</span><span class=gr>↑'+t.gr+'%</span><span class=tti><span class=tpb>'+t.ty+'</span></span><span class=tmb>⏱'+t.ha+'h前</span></div><div class=bt><button class=prb>查看详情</button></div></div>').join(''):'<div class=emp><div class=ic>📡</div>暂无趋势 · 6h后刷新</div>'
+  g.innerHTML=ti.length?ti.map(t=>'<div class=tc data-i='+t.id+'><div class=top><div class=tl>'+t.tl+'</div><div><div class=sc>'+t.mo+'</div><div class=slb>势能</div></div></div><div class=bd>'+'<span class="tg '+(t.so=='蓝海选题'?'ext':'int')+'">'+t.so+'</span><span class=gb>'+t.gm+'</span><span class=gr>↑'+t.gr+'%</span><span class=tti><span class=tpb>'+t.ty+'</span></span><span class=tmb>⏱'+t.ha+'h前</span></div><div class=bt><button class=prb>查看详情</button></div></div>').join(''):'<div class=emp><div class=ic>📡</div>暂无趋势 · 6h后刷新</div>'
   h.innerHTML=hi.length?hi.map(t=>'<div class=hc data-i='+t.id+'><div class=hbr><div class=hfl style=width:'+t.hs+'%></div></div><div class=top><div class=tl>'+t.tl+'</div><div><div class=sc>'+t.hs+'</div><div class=slb>热度</div></div></div><div class=bd>'+'<span class="tg '+(t.so=='全网热点'?'glbl':'comm')+'">'+t.so+'</span><span class=gb>'+t.gm+'</span><span class=tti><span class=tpb>'+t.ty+'</span></span><span class=hs>发布 <strong>'+(t.nt/1000).toFixed(1)+'k</strong></span><span class=hs>CES <strong>'+t.ce+'w</strong></span><span class="lf '+(t.lc=='上升期'?'up':t.lc=='高峰期'?'peak':'dec')+'">'+(t.lc=='上升期'?'📈':t.lc=='高峰期'?'🔝':'📉')+t.lc+'</span><span class=tmb>⏱'+t.ha+'h前</span></div><div class=bt><button class=prb>详情</button></div></div>').join(''):'<div class=emp><div class=ic>🔥</div>暂无热点 · 6h后刷新</div>'
   document.querySelectorAll('.prb').forEach(b=>b.addEventListener('click',e=>{e.stopPropagation()
     const c=e.target.closest('[data-i]');if(!c)return
