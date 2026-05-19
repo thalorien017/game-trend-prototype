@@ -212,15 +212,18 @@ body{
 .mb2.sc:hover{background:var(--bg3);color:var(--text)}
 .tt{position:fixed;bottom:28px;left:50%;transform:translate(-50%,16px);background:var(--bg2);color:var(--text);padding:8px 20px;border-radius:8px;font-size:12px;font-weight:500;z-index:3000;border:1px solid var(--border);opacity:0;transition:all .2s;pointer-events:none}
 .tt.show{opacity:1;transform:translate(-50%,0)}
+
+/* TYPE POPOVER */
+.tpop{display:none;position:fixed;z-index:5000;background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:12px 16px;font-size:12px;line-height:1.6;color:var(--text2);box-shadow:0 8px 32px rgba(0,0,0,.3);width:280px}
+.tpop.show{display:block}
+.tpop strong{color:var(--text);display:inline-block;width:55px}
+.tpop .r{margin-bottom:5px;display:flex}
+.tpop .r:last-child{margin-bottom:0}
+.tpop .r .d{color:var(--text3);font-size:11px}
 /* TYPE TOOLTIP */
 .tti{display:inline-flex;align-items:center;gap:3px;position:relative}
 .tti .q{width:14px;height:14px;border-radius:50%;background:var(--bg3);border:1px solid var(--border);display:inline-flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;color:var(--text3);cursor:pointer;transition:all .12s;position:relative}
 .tti .q:hover{background:var(--card);color:var(--text2)}
-.tti .tip{display:none;position:absolute;top:22px;left:0;background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:10px 12px;font-size:11px;line-height:1.5;color:var(--text2);white-space:nowrap;z-index:100;box-shadow:0 4px 20px rgba(0,0,0,.2)}
-.tti .tip.show{display:block}
-.tti .tip strong{color:var(--text);display:inline-block;width:50px}
-.tti .tip .r{margin-bottom:4px}
-.tti .tip .r:last-child{margin-bottom:0}
 ::-webkit-scrollbar-track{background:transparent}
 ::-webkit-scrollbar-thumb{background:var(--bg3);border-radius:2px}
 </style>
@@ -272,7 +275,7 @@ body{
 <div class="ol" id="ol"></div>
 <div class="dr" id="dr">
   <div class="dh">
-    <div class="di"><div class="dt" id="dt">—</div><div class="dm" id="dm"><span id="dg">—</span><span id="dso">—</span><span class="tti"><span id="dty">—</span><span class="q" onclick="toggleTip(event,this)">?</span><span class="tip" id="tip"><div class="r"><strong>创作型</strong>用户原创产出（cos/二创/教程/仿妆）</div><div class="r"><strong>讨论型</strong>发起观点讨论（评价/分析/吐槽）</div><div class="r"><strong>双重</strong>兼具创作与讨论属性</div></span></span></div></div>
+    <div class="di"><div class="dt" id="dt">—</div><div class="dm" id="dm"><span id="dg">—</span><span id="dso">—</span><span class="tti"><span class=tpb id="dty">—</span><span class="q" onclick="showTypeTip(event)">?</span></span></div></div>
     <div style="text-align:right;margin-right:8px"><div class="dsc" id="ds">—</div><div class="dsl" id="dsl">势能</div></div>
     <button class="dcl" id="dcl">✕</button>
   </div>
@@ -291,6 +294,11 @@ body{
   </div>
 </div>
 <div class="tt" id="tt"></div>
+<div class="tpop" id="tpop">
+  <div class="r"><strong>创作型</strong><span class="d">用户原创产出（cos/二创/教程/仿妆）</span></div>
+  <div class="r"><strong>讨论型</strong><span class="d">发起观点讨论（评价/分析/吐槽）</span></div>
+  <div class="r"><strong>双重</strong><span class="d">兼具创作与讨论属性</span></div>
+</div>
 
 <script>
 const G='王者荣耀,和平精英,三角洲行动,金铲铲之战,英雄联盟,无畏契约,火影忍者,PUBG,暗区突围,永劫无间,CSGO,穿越火线：枪战王者,DOTA2,王者万象棋'.split(',')
@@ -330,8 +338,8 @@ function rd(){
   document.getElementById('st4').textContent=hi.length
   document.getElementById('sc').textContent=sb.length
   const g=document.getElementById('tg'),h=document.getElementById('hg')
-  g.innerHTML=ti.length?ti.map(t=>'<div class=tc data-i='+t.id+'><div class=top><div class=tl>'+t.tl+'</div><div><div class=sc>'+t.mo+'</div><div class=slb>势能</div></div></div><div class=bd>'+'<span class="tg '+(t.so=='站外热'?'ext':t.so=='站内苗头'?'int':'dual')+'">'+t.so+'</span><span class=gb>'+t.gm+'</span><span class=gr>↑'+t.gr+'%</span><span class=tti><span class=tpb>'+t.ty+'</span><span class=q onclick="event.stopPropagation();toggleTip(event,this)">?</span></span><span class=tmb>⏱'+t.ha+'h前</span></div><div class=bt><button class=prb>查看详情</button></div></div>').join(''):'<div class=emp><div class=ic>📡</div>暂无趋势 · 6h后刷新</div>'
-  h.innerHTML=hi.length?hi.map(t=>'<div class=hc data-i='+t.id+'><div class=hbr><div class=hfl style=width:'+t.hs+'%></div></div><div class=top><div class=tl>'+t.tl+'</div><div><div class=sc>'+t.hs+'</div><div class=slb>热度</div></div></div><div class=bd>'+'<span class="tg '+(t.so=='全网热点'?'glbl':'comm')+'">'+t.so+'</span><span class=gb>'+t.gm+'</span><span class=hs>发布 <strong>'+(t.nt/1000).toFixed(1)+'k</strong></span><span class=hs>CES <strong>'+t.ce+'w</strong></span><span class="lf '+(t.lc=='上升期'?'up':t.lc=='高峰期'?'peak':'dec')+'">'+(t.lc=='上升期'?'📈':t.lc=='高峰期'?'🔝':'📉')+t.lc+'</span><span class=tmb>⏱'+t.ha+'h前</span></div><div class=bt><button class=prb>详情</button></div></div>').join(''):'<div class=emp><div class=ic>🔥</div>暂无热点 · 6h后刷新</div>'
+  g.innerHTML=ti.length?ti.map(t=>'<div class=tc data-i='+t.id+'><div class=top><div class=tl>'+t.tl+'</div><div><div class=sc>'+t.mo+'</div><div class=slb>势能</div></div></div><div class=bd>'+'<span class="tg '+(t.so=='站外热'?'ext':t.so=='站内苗头'?'int':'dual')+'">'+t.so+'</span><span class=gb>'+t.gm+'</span><span class=gr>↑'+t.gr+'%</span><span class=tti><span class=tpb>'+t.ty+'</span><span class=q onclick="showTypeTip(event)">?</span></span><span class=tmb>⏱'+t.ha+'h前</span></div><div class=bt><button class=prb>查看详情</button></div></div>').join(''):'<div class=emp><div class=ic>📡</div>暂无趋势 · 6h后刷新</div>'
+  h.innerHTML=hi.length?hi.map(t=>'<div class=hc data-i='+t.id+'><div class=hbr><div class=hfl style=width:'+t.hs+'%></div></div><div class=top><div class=tl>'+t.tl+'</div><div><div class=sc>'+t.hs+'</div><div class=slb>热度</div></div></div><div class=bd>'+'<span class="tg '+(t.so=='全网热点'?'glbl':'comm')+'">'+t.so+'</span><span class=gb>'+t.gm+'</span><span class=tti><span class=tpb>'+t.ty+'</span><span class=q onclick="showTypeTip(event)">?</span></span><span class=hs>发布 <strong>'+(t.nt/1000).toFixed(1)+'k</strong></span><span class=hs>CES <strong>'+t.ce+'w</strong></span><span class="lf '+(t.lc=='上升期'?'up':t.lc=='高峰期'?'peak':'dec')+'">'+(t.lc=='上升期'?'📈':t.lc=='高峰期'?'🔝':'📉')+t.lc+'</span><span class=tmb>⏱'+t.ha+'h前</span></div><div class=bt><button class=prb>详情</button></div></div>').join(''):'<div class=emp><div class=ic>🔥</div>暂无热点 · 6h后刷新</div>'
   document.querySelectorAll('.prb').forEach(b=>b.addEventListener('click',e=>{e.stopPropagation()
     const c=e.target.closest('[data-i]');if(!c)return
     const id=c.dataset.i,pool=c.closest('.tc')?TR:HO
@@ -374,8 +382,15 @@ function os(){const q=document.getElementById('msr').value.toLowerCase()
 }
 function uc(){document.getElementById('mcn').textContent=document.querySelectorAll('#gl input:checked').length}
 function tt(m){const t=document.getElementById('tt');t.textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2000)}
-function toggleTip(e,el){e.stopPropagation();const tip=el.nextElementSibling;tip.classList.toggle('show')}
-document.addEventListener('click',function(){document.querySelectorAll('.tip.show').forEach(t=>t.classList.remove('show'))})
+function showTypeTip(e){
+  e.stopPropagation()
+  const pop=document.getElementById('tpop')
+  const x=Math.min(e.clientX,window.innerWidth-290)
+  const y=Math.min(e.clientY+20,window.innerHeight-130)
+  pop.style.left=x+'px';pop.style.top=y+'px'
+  pop.classList.toggle('show')
+}
+document.addEventListener('click',function(){const p=document.getElementById('tpop');if(p.classList.contains('show'))p.classList.remove('show')})
 const n=new Date();document.getElementById('ut').textContent=String(n.getHours()).padStart(2,'0')+':'+String(n.getMinutes()).padStart(2,'0')
 </script>
 </body>
