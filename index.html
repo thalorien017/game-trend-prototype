@@ -158,35 +158,36 @@ body{
 .dr.open{transform:translateX(0)}
 .ol{position:fixed;inset:0;background:rgba(0,0,0,.3);z-index:999;opacity:0;pointer-events:none;transition:opacity .15s}
 .ol.show{opacity:1;pointer-events:auto}
-.dh{display:flex;padding:20px 20px 14px;border-bottom:1px solid var(--border)}
+.dh{display:flex;padding:18px 20px;border-bottom:1px solid var(--border);align-items:flex-start}
 .di{flex:1;min-width:0}
-.dt{font-size:15px;font-weight:700;line-height:1.35;color:var(--text)}
-.dm{font-size:11px;color:var(--text3);margin-top:3px;display:flex;gap:6px;flex-wrap:wrap}
-.ds{font-size:26px;font-weight:800;font-family:'Space Grotesk',sans-serif;margin-right:8px}
-.ds.o{color:var(--acc-orange)}
-.ds.r{color:var(--acc-red)}
+.dt{font-size:15px;font-weight:700;line-height:1.4;color:var(--text)}
+.dm{font-size:11px;color:var(--text3);margin-top:4px;display:flex;gap:8px;flex-wrap:wrap}
+.dsc{font-size:26px;font-weight:800;font-family:'Space Grotesk',sans-serif;margin-right:6px}
+.dsc.o{color:var(--acc-orange)}
+.dsc.r{color:var(--acc-red)}
 .dsl{font-size:9px;color:var(--text3);text-align:right}
 .dcl{width:28px;height:28px;border-radius:6px;background:var(--bg3);border:1px solid var(--border);
   font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--text3);flex-shrink:0}
 .dcl:hover{background:var(--card);color:var(--text)}
-.ds{padding:14px 20px;border-bottom:1px solid var(--border)}
-.ds:last-child{border:none}
-.ds h4{font-size:10px;font-weight:700;color:var(--text3);margin-bottom:10px;letter-spacing:.8px}
-.dr{display:flex;gap:14px}
-.di2 .v{font-size:14px;font-weight:700;font-family:'Space Grotesk',sans-serif;color:var(--text)}
-.di2 .l{font-size:9px;color:var(--text3);margin-top:1px}
-.nl{display:flex;flex-direction:column;gap:5px}
-.ni{display:flex;align-items:center;gap:8px;padding:8px 10px;background:var(--card);border-radius:8px;border:1px solid var(--border);cursor:pointer}
-.ni:hover{background:var(--bg3)}
-.ni .ic{width:24px;height:24px;border-radius:5px;background:var(--bg3);display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0}
+.dsec{padding:16px 20px;border-bottom:1px solid var(--border)}
+.dsec:last-child{border:none}
+.dsec h4{font-size:10px;font-weight:700;color:var(--text3);margin-bottom:10px;letter-spacing:.8px}
+.drow{display:flex;gap:16px}
+.di2{flex:1}
+.di2 .v{font-size:15px;font-weight:700;font-family:'Space Grotesk',sans-serif;color:var(--text)}
+.di2 .l{font-size:10px;color:var(--text3);margin-top:2px}
+.nl{display:flex;flex-direction:column;gap:6px}
+.ni{display:flex;align-items:center;gap:10px;padding:10px 12px;background:var(--card);border-radius:8px;border:1px solid var(--border);cursor:pointer;transition:all .12s}
+.ni:hover{background:var(--bg3);border-color:rgba(249,115,22,.12)}
+.ni .ic{width:26px;height:26px;border-radius:6px;background:var(--bg3);display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0}
 .ni .info{flex:1;min-width:0}
-.ni .info .t{font-size:11px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:var(--text)}
-.ni .info .s{font-size:9px;color:var(--text3);margin-top:1px}
-.ni .lk{font-size:9px;color:var(--acc-cyan);font-weight:600}
-.ac{background:var(--card);border-radius:8px;padding:12px;border:1px solid var(--border);font-size:12px;line-height:1.5;color:var(--text2)}
-.ac .l{font-size:9px;font-weight:700;color:var(--text3);margin-bottom:4px;letter-spacing:.5px}
-.ac .rw{display:flex;gap:8px;margin-top:6px}
-.at{padding:2px 8px;border-radius:4px;font-size:9px;font-weight:600;background:var(--bg3);color:var(--text2);border:1px solid var(--border)}
+.ni .info .t{font-size:12px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:var(--text)}
+.ni .info .s{font-size:10px;color:var(--text3);margin-top:1px}
+.ni .lk{font-size:10px;color:var(--acc-cyan);font-weight:600}
+.ac{background:var(--card);border-radius:8px;padding:14px;border:1px solid var(--border);font-size:12px;line-height:1.6;color:var(--text2)}
+.ac .l{font-size:10px;font-weight:700;color:var(--text3);margin-bottom:6px;letter-spacing:.5px}
+.ac .rw{display:flex;gap:10px;margin-top:8px}
+.at{padding:3px 10px;border-radius:4px;font-size:10px;font-weight:600;background:var(--bg3);color:var(--text2);border:1px solid var(--border)}
 
 /* MODAL */
 .md{position:fixed;inset:0;z-index:2000;display:none;align-items:center;justify-content:center}
@@ -264,12 +265,12 @@ body{
 <div class="dr" id="dr">
   <div class="dh">
     <div class="di"><div class="dt" id="dt">—</div><div class="dm" id="dm"><span id="dg">—</span><span id="dso">—</span><span id="dty">—</span></div></div>
-    <div style="text-align:right;margin-right:8px"><div class="ds" id="ds">—</div><div class="dsl" id="dsl">势能</div></div>
+    <div style="text-align:right;margin-right:8px"><div class="dsc" id="ds">—</div><div class="dsl" id="dsl">势能</div></div>
     <button class="dcl" id="dcl">✕</button>
   </div>
-  <div class="ds"><h4>数据概览</h4><div class="dr"><div class="di2"><div class="v" id="dd1">—</div><div class="l" id="dd1l">—</div></div><div class="di2"><div class="v" id="dd2">—</div><div class="l" id="dd2l">—</div></div><div class="di2"><div class="v" id="dd3">—</div><div class="l" id="dd3l">—</div></div></div></div>
-  <div class="ds"><h4>样本笔记</h4><div class="nl" id="dn"></div></div>
-  <div class="ds"><h4>AI 建议</h4><div class="ac"><div class="l">切入方向</div><div id="dai">—</div><div class="rw"><span class="at" id="ddf">—</span><span class="at" id="dac">—</span></div></div></div>
+  <div class="dsec"><h4>数据概览</h4><div class="drow"><div class="di2"><div class="v" id="dd1">—</div><div class="l" id="dd1l">—</div></div><div class="di2"><div class="v" id="dd2">—</div><div class="l" id="dd2l">—</div></div><div class="di2"><div class="v" id="dd3">—</div><div class="l" id="dd3l">—</div></div></div></div>
+  <div class="dsec"><h4>样本笔记</h4><div class="nl" id="dn"></div></div>
+  <div class="dsec"><h4>AI 建议</h4><div class="ac"><div class="l">切入方向</div><div id="dai">—</div><div class="rw"><span class="at" id="ddf">—</span><span class="at" id="dac">—</span></div></div></div>
 </div>
 
 <div class="md" id="md">
@@ -332,7 +333,7 @@ function rd(){
       document.getElementById('dg').textContent=item.gm
       document.getElementById('dso').textContent=item.so
       document.getElementById('dty').textContent=item.ty
-      const se=document.getElementById('ds');se.className='ds '+(is?'o':'r')
+      const se=document.getElementById('ds');se.className='dsc '+(is?'o':'r')
       se.textContent=is?item.mo:item.hs
       document.getElementById('dsl').textContent=is?'势能':'热度'
       document.getElementById('dd1l').textContent=is?'增速':'累计发布'
